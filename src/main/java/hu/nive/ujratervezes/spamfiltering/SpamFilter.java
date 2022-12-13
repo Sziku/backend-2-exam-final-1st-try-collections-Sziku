@@ -21,18 +21,16 @@ public class SpamFilter {
         if (!blacklist.isEmpty()) {
             for (List<String> strings : sentence) {
                 for (String badWord : blacklist) {
-                    if (strings.contains(badWord)) {
-                        break;
-                    } else {
+                    if (!strings.contains(badWord)) {
                         tempSentence.add(strings);
                     }
                 }
             }
-        }else{
+        } else {
             tempSentence = sentence;
         }
         System.out.println(tempSentence);
-
+        if (!tempSentence.isEmpty()) {
             for (List<String> strings : tempSentence) {
                 for (String goodWord : whitelist) {
                     if (strings.contains(goodWord)) {
@@ -41,6 +39,8 @@ public class SpamFilter {
                     }
                 }
             }
+
+        }
 
         System.out.println(passedSentence);
         return passedSentence;
