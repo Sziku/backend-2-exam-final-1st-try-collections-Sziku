@@ -18,7 +18,7 @@ public class SpamFilter {
         List<List<String>> passedSentence = new ArrayList<>();
         List<List<String>> tempSentence = new ArrayList<>();
 
-        if (blacklist.size() > 0) {
+        if (!blacklist.isEmpty()) {
             for (List<String> strings : sentence) {
                 for (String badWord : blacklist) {
                     if (strings.contains(badWord)) {
@@ -29,20 +29,20 @@ public class SpamFilter {
                 }
             }
         }else{
-            tempSentence = passedSentence;
+            tempSentence = sentence;
         }
+        System.out.println(tempSentence);
 
-        if (tempSentence.size() > 0) {
             for (List<String> strings : tempSentence) {
                 for (String goodWord : whitelist) {
-                    if (tempSentence.contains(goodWord)) {
+                    if (strings.contains(goodWord)) {
                         passedSentence.add(strings);
                         break;
                     }
                 }
             }
-        }
 
+        System.out.println(passedSentence);
         return passedSentence;
     }
 }
